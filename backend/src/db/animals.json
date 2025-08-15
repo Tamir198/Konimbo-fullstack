@@ -19,6 +19,26 @@
       "color": "Black and White",
       "createdAt": "2024-01-01T00:00:00.000Z",
       "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "1755285233877",
+      "name": "Simba",
+      "species": "Lion",
+      "age": 3,
+      "weight": 150,
+      "color": "Golden",
+      "createdAt": "2025-08-15T19:13:53.877Z",
+      "updatedAt": "2025-08-15T19:13:53.877Z"
+    },
+    {
+      "id": "1755285235611",
+      "name": "Simba",
+      "species": "Lion",
+      "age": 3,
+      "weight": 150,
+      "color": "Golden",
+      "createdAt": "2025-08-15T19:13:55.611Z",
+      "updatedAt": "2025-08-15T19:13:55.611Z"
     }
   ]
 }

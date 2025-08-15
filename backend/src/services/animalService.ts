@@ -1,8 +1,8 @@
 import fs from 'fs/promises';
-import path from 'path';
 import { Animal, CreateAnimalDto, UpdateAnimalDto } from '../types/animal';
+import { getDbPath } from '../utils/dbPath';
 
-const dbPath = path.join(__dirname, '../db/animals.json');
+const dbPath = getDbPath('animals.json');
 
 const readDb = async (): Promise<{ animals: Animal[] }> => {
   try {
