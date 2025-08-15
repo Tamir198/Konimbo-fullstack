@@ -1,0 +1,24 @@
+{
+  "animals": [
+    {
+      "id": "2",
+      "name": "Ella",
+      "species": "Elephant",
+      "age": 12,
+      "weight": 4000,
+      "color": "Gray",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "name": "Zara",
+      "species": "Zebra",
+      "age": 3,
+      "weight": 350,
+      "color": "Black and White",
+      "createdAt": "2024-01-01T00:00:00.000Z",
+      "updatedAt": "2024-01-01T00:00:00.000Z"
+    }
+  ]
+}
