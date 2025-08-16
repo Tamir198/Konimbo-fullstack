@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@/components/ui/atoms/Typography/Typography';
 import Button from '@/components/ui/atoms/Button/Button';
+import Card from '@/components/ui/atoms/Card/Card';
+import Input from '@/components/ui/atoms/Input/Input';
 import { animalService, Animal } from '@/services/animalService';
 import AnimalCard from './AnimalCard';
 
@@ -10,6 +12,7 @@ const AnimalsGrid: React.FC = () => {
   const [animals, setAnimals] = useState<Animal[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchAnimals = async () => {
@@ -28,6 +31,18 @@ const AnimalsGrid: React.FC = () => {
 
     fetchAnimals();
   }, []);
+
+  const filteredAnimals = animals.filter(({ name, species, color, age }) => {
+    if (!searchQuery.trim()) return true;
+
+    const query = searchQuery.toLowerCase();
+    return (
+      name.toLowerCase().includes(query) ||
+      species.toLowerCase().includes(query) ||
+      color.toLowerCase().includes(query) ||
+      age.toString().includes(query)
+    );
+  });
 
   if (loading) {
     return (
@@ -63,11 +78,37 @@ const AnimalsGrid: React.FC = () => {
   }
 
   return (
-    <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12'>
-      {animals.map((animal) => (
-        <AnimalCard key={animal.id} animal={animal} />
-      ))}
-    </div>
+    <>
+      <Card padding='large' shadow='medium' className='mb-12'>
+        <Typography
+          variant='subtitle'
+          size='medium'
+          weight='semibold'
+          className='mb-6'
+        >
+          Search & Filter
+        </Typography>
+
+        <div className='flex gap-4 items-end'>
+          <Input
+            label='Search Animals'
+            placeholder='Search by name, species, or color...'
+            className='flex-1'
+            value={searchQuery}
+            onChange={setSearchQuery}
+          />
+          <Button variant='outline' onClick={() => setSearchQuery('')}>
+            Clear
+          </Button>
+        </div>
+      </Card>
+
+      <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12'>
+        {filteredAnimals.map((animal) => (
+          <AnimalCard key={animal.id} animal={animal} />
+        ))}
+      </div>
+    </>
   );
 };
 
