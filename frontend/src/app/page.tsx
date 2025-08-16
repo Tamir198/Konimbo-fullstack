@@ -40,15 +40,7 @@ export default function Home() {
           </div>
         </Card>
 
-        {/* Animals Grid */}
         <AnimalsGrid />
-
-        {/* Add New Animal Button */}
-        <div className='text-center'>
-          <Button variant='primary' size='large'>
-            + Add New Animal
-          </Button>
-        </div>
       </div>
     </Layout>
   );
