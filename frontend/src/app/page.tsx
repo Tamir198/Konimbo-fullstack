@@ -8,7 +8,7 @@ export default async function Home() {
 
   return (
     <Layout>
-      <div className='max-w-6xl mx-auto bg-gray-900 rounded-lg shadow-md p-8'>
+      <div className='grid grid-cols-1 gap-8 '>
         <Typography
           variant='title'
           size='large'
