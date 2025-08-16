@@ -3,6 +3,7 @@ import Typography from '@/components/ui/atoms/Typography/Typography';
 import Card from '@/components/ui/atoms/Card/Card';
 import Button from '@/components/ui/atoms/Button/Button';
 import Input from '@/components/ui/atoms/Input/Input';
+import AnimalsGrid from '@/components/ui/components/AnimalsGrid';
 
 export default function Home() {
   return (
@@ -40,122 +41,7 @@ export default function Home() {
         </Card>
 
         {/* Animals Grid */}
-        <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12'>
-          {/* Sample Animal Cards */}
-          <Card padding='medium' shadow='medium'>
-            <Typography variant='subtitle' size='medium' weight='semibold'>
-              Leo the Lion
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Species: Lion
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Age: 5 years • Weight: 180kg
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-4'
-            >
-              Color: Golden Brown
-            </Typography>
-            <div className='flex gap-2'>
-              <Button variant='outline' size='small'>
-                View Details
-              </Button>
-              <Button variant='ghost' size='small'>
-                Edit
-              </Button>
-            </div>
-          </Card>
-
-          <Card padding='medium' shadow='medium'>
-            <Typography variant='subtitle' size='medium' weight='semibold'>
-              Ellie the Elephant
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Species: African Elephant
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Age: 12 years • Weight: 4,500kg
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-4'
-            >
-              Color: Gray
-            </Typography>
-            <div className='flex gap-2'>
-              <Button variant='outline' size='small'>
-                View Details
-              </Button>
-              <Button variant='ghost' size='small'>
-                Edit
-              </Button>
-            </div>
-          </Card>
-
-          <Card padding='medium' shadow='medium'>
-            <Typography variant='subtitle' size='medium' weight='semibold'>
-              Zara the Zebra
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Species: Plains Zebra
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-2'
-            >
-              Age: 3 years • Weight: 350kg
-            </Typography>
-            <Typography
-              variant='bodySmall'
-              size='small'
-              color='secondary'
-              className='mb-4'
-            >
-              Color: Black & White Stripes
-            </Typography>
-            <div className='flex gap-2'>
-              <Button variant='outline' size='small'>
-                View Details
-              </Button>
-              <Button variant='ghost' size='small'>
-                Edit
-              </Button>
-            </div>
-          </Card>
-        </div>
+        <AnimalsGrid />
 
         {/* Add New Animal Button */}
         <div className='text-center'>
