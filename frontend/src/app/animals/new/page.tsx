@@ -58,18 +58,10 @@ export default function AddAnimal() {
 
   const onSubmit = async (data: AddAnimalFormData) => {
     try {
-      console.log('Creating animal:', data);
-
-      // Call API to create animal
       await animalService.createAnimal(data);
-
-      // Reset form after successful submission
       reset();
-
-      // Redirect to main page to see all animals
       router.push('/');
     } catch (error) {
-      console.error('Error creating animal:', error);
       alert(ERROR_MESSAGES.ANIMAL_CREATE_FAILED);
     }
   };
