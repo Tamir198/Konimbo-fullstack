@@ -7,49 +7,32 @@ import Input from '@/components/ui/atoms/Input/Input';
 export default function Home() {
   return (
     <Layout>
-      <div
-        style={{
-          backgroundColor: 'var(--color-background)',
-          borderRadius: 'var(--radius-lg)',
-          boxShadow: 'var(--shadow-md)',
-          padding: 'var(--spacing-2xl)',
-        }}
-      >
+      <div className='max-w-6xl mx-auto bg-gray-900 rounded-lg shadow-md p-8'>
         <Typography
           variant='title'
           size='large'
           weight='bold'
-          style={{ marginBottom: 'var(--spacing-xl)' }}
+          className='mb-12'
         >
           🐾 Animals List
         </Typography>
 
         {/* Search and Filter Section */}
-        <Card
-          padding='large'
-          shadow='medium'
-          style={{ marginBottom: 'var(--spacing-xl)' }}
-        >
+        <Card padding='large' shadow='medium' className='mb-12'>
           <Typography
             variant='subtitle'
             size='medium'
             weight='semibold'
-            style={{ marginBottom: 'var(--spacing-lg)' }}
+            className='mb-6'
           >
             Search & Filter
           </Typography>
 
-          <div
-            style={{
-              display: 'flex',
-              gap: 'var(--spacing-md)',
-              alignItems: 'end',
-            }}
-          >
+          <div className='flex gap-4 items-end'>
             <Input
               label='Search Animals'
               placeholder='Search by name, species, or color...'
-              style={{ flex: 1 }}
+              className='flex-1'
             />
             <Button variant='primary'>Search</Button>
             <Button variant='outline'>Clear</Button>
@@ -57,13 +40,7 @@ export default function Home() {
         </Card>
 
         {/* Animals Grid */}
-        <div
-          style={{
-            display: 'grid',
-            gap: 'var(--spacing-lg)',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-          }}
-        >
+        <div className='grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-12'>
           {/* Sample Animal Cards */}
           <Card padding='medium' shadow='medium'>
             <Typography variant='subtitle' size='medium' weight='semibold'>
@@ -73,7 +50,7 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
               Species: Lion
             </Typography>
@@ -81,7 +58,7 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
               Age: 5 years • Weight: 180kg
             </Typography>
@@ -89,11 +66,11 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-md)' }}
+              className='mb-4'
             >
               Color: Golden Brown
             </Typography>
-            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+            <div className='flex gap-2'>
               <Button variant='outline' size='small'>
                 View Details
               </Button>
@@ -111,7 +88,7 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
               Species: African Elephant
             </Typography>
@@ -119,19 +96,19 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
-              Age: 12 years • Weight: 3000kg
+              Age: 12 years • Weight: 4,500kg
             </Typography>
             <Typography
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-md)' }}
+              className='mb-4'
             >
               Color: Gray
             </Typography>
-            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+            <div className='flex gap-2'>
               <Button variant='outline' size='small'>
                 View Details
               </Button>
@@ -143,13 +120,13 @@ export default function Home() {
 
           <Card padding='medium' shadow='medium'>
             <Typography variant='subtitle' size='medium' weight='semibold'>
-              Ziggy the Zebra
+              Zara the Zebra
             </Typography>
             <Typography
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
               Species: Plains Zebra
             </Typography>
@@ -157,7 +134,7 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-sm)' }}
+              className='mb-2'
             >
               Age: 3 years • Weight: 350kg
             </Typography>
@@ -165,11 +142,11 @@ export default function Home() {
               variant='bodySmall'
               size='small'
               color='secondary'
-              style={{ marginBottom: 'var(--spacing-md)' }}
+              className='mb-4'
             >
-              Color: Black & White
+              Color: Black & White Stripes
             </Typography>
-            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+            <div className='flex gap-2'>
               <Button variant='outline' size='small'>
                 View Details
               </Button>
@@ -181,7 +158,7 @@ export default function Home() {
         </div>
 
         {/* Add New Animal Button */}
-        <div style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
+        <div className='text-center'>
           <Button variant='primary' size='large'>
             + Add New Animal
           </Button>

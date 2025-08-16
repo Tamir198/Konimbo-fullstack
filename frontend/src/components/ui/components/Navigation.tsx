@@ -1,42 +1,45 @@
 'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import styles from './Navigation.module.css';
-import Typography from '../atoms/Typography/Typography';
 
 const Navigation = () => {
   const pathname = usePathname();
 
-  const navItems = [
-    { href: '/', label: 'Animals List' },
-    { href: '/animals/AnimalDetails', label: 'Animal Detail' },
-    { href: '/animals/1', label: 'Add Animal' },
-  ];
+  const isActive = (path: string) => pathname === path;
 
   return (
-    <nav className={styles.navigation}>
-      <div className={styles.container}>
-        <Link href='/' className={styles.logo}>
-          <Typography variant='title' size='medium' weight='bold'>
-            🐾 Konimbo
-          </Typography>
+    <nav className='bg-gray-900 border-b border-gray-700 shadow-sm sticky top-0 z-50'>
+      <div className='max-w-6xl mx-auto px-6 flex items-center justify-between h-16'>
+        <Link
+          href='/'
+          className='text-xl font-bold text-gray-100 hover:opacity-80 transition-opacity'
+        >
+          🐾 Konimbo
         </Link>
 
-        <div className={styles.navLinks}>
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`${styles.navLink} ${
-                pathname === item.href ? styles.active : ''
-              }`}
-            >
-              <Typography variant='body' size='small' weight='medium'>
-                {item.label}
-              </Typography>
-            </Link>
-          ))}
+        <div className='flex gap-6 items-center'>
+          <Link
+            href='/'
+            className={`px-4 py-2 rounded-md transition-colors ${
+              isActive('/')
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                : 'text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            Animals
+          </Link>
+          <Link
+            href='/animals/new'
+            className={`px-4 py-2 rounded-md transition-colors ${
+              isActive('/animals/new')
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                : 'text-gray-300 hover:bg-gray-800'
+            }`}
+          >
+            Add Animal
+          </Link>
         </div>
       </div>
     </nav>

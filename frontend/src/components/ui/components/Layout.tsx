@@ -1,16 +1,15 @@
 import React from 'react';
 import Navigation from './Navigation';
-import styles from './Layout.module.css';
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className={styles.layout}>
+    <div className='min-h-screen bg-gray-800'>
       <Navigation />
-      <main className={styles.main}>{children}</main>
+      <main className='p-8 max-w-7xl mx-auto'>{children}</main>
     </div>
   );
 };

@@ -1,27 +1,36 @@
-import React from 'react';
-import styles from './Card.module.css';
-import { Size } from '@/types/common';
+'use client';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+import React from 'react';
+
+interface CardProps {
   children: React.ReactNode;
-  padding?: Size;
-  shadow?: Size;
+  padding?: 'small' | 'medium' | 'large';
+  shadow?: 'none' | 'small' | 'medium' | 'large';
+  className?: string;
 }
 
-const Card = ({
+const Card: React.FC<CardProps> = ({
   children,
   padding = 'medium',
   shadow = 'medium',
   className = '',
-  ...props
-}: CardProps) => {
-  const cardClasses = `${styles.card} ${styles[padding]} ${styles[shadow]} ${className}`;
+}) => {
+  const paddingClasses = {
+    small: 'p-3',
+    medium: 'p-4',
+    large: 'p-6',
+  };
 
-  return (
-    <div className={cardClasses} {...props}>
-      {children}
-    </div>
-  );
+  const shadowClasses = {
+    none: '',
+    small: 'shadow-sm',
+    medium: 'shadow-md',
+    large: 'shadow-lg',
+  };
+
+  const classes = `bg-gray-900 rounded-lg border border-gray-700 ${paddingClasses[padding]} ${shadowClasses[shadow]} ${className}`;
+
+  return <div className={classes}>{children}</div>;
 };
 
 export default Card;

@@ -1,37 +1,54 @@
-import React from 'react';
-import styles from './Typography.module.css';
-import { Size } from '@/types/common';
+'use client';
 
-interface TypographyProps extends React.HTMLAttributes<HTMLParagraphElement> {
-  variant?: 'title' | 'subtitle' | 'body' | 'bodySmall' | 'caption' | 'label';
-  size?: Size;
-  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
-  color?:
-    | 'primary'
-    | 'secondary'
-    | 'disabled'
-    | 'error'
-    | 'success'
-    | 'warning';
+import React from 'react';
+
+interface TypographyProps {
   children: React.ReactNode;
+  variant?: 'title' | 'subtitle' | 'body' | 'bodySmall' | 'caption';
+  size?: 'small' | 'medium' | 'large';
+  weight?: 'normal' | 'medium' | 'semibold' | 'bold';
+  color?: 'primary' | 'secondary' | 'default';
+  className?: string;
 }
 
-const Typography = ({
+const Typography: React.FC<TypographyProps> = ({
+  children,
   variant = 'body',
   size = 'medium',
   weight = 'normal',
-  color = 'primary',
-  children,
+  color = 'default',
   className = '',
-  ...props
-}: TypographyProps) => {
-  const typographyClasses = `${styles.typography} ${styles[variant]} ${styles[size]} ${styles[weight]} ${styles[color]} ${className}`;
+}) => {
+  const variantClasses = {
+    title: 'text-gray-100',
+    subtitle: 'text-gray-100',
+    body: 'text-gray-100',
+    bodySmall: 'text-gray-400',
+    caption: 'text-gray-400',
+  };
 
-  return (
-    <div className={typographyClasses} {...props}>
-      {children}
-    </div>
-  );
+  const sizeClasses = {
+    small: 'text-sm',
+    medium: 'text-base',
+    large: 'text-lg',
+  };
+
+  const weightClasses = {
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+  };
+
+  const colorClasses = {
+    primary: 'text-blue-400',
+    secondary: 'text-gray-400',
+    default: '',
+  };
+
+  const classes = `${variantClasses[variant]} ${sizeClasses[size]} ${weightClasses[weight]} ${colorClasses[color]} ${className}`;
+
+  return <div className={classes}>{children}</div>;
 };
 
 export default Typography;

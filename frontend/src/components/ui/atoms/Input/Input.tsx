@@ -1,29 +1,54 @@
-import React from 'react';
-import styles from './Input.module.css';
-import { Size } from '@/types/common';
+'use client';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+import React from 'react';
+
+interface InputProps {
   label?: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+  type?: 'text' | 'email' | 'password' | 'number';
+  required?: boolean;
+  disabled?: boolean;
   error?: string;
-  inputSize?: Size;
+  className?: string;
 }
 
-const Input = ({
+const Input: React.FC<InputProps> = ({
   label,
+  placeholder,
+  value,
+  onChange,
+  type = 'text',
+  required = false,
+  disabled = false,
   error,
-  inputSize = 'medium',
   className = '',
-  ...props
-}: InputProps) => {
-  const inputClasses = `${styles.input} ${styles[inputSize]} ${
-    error ? styles.error : ''
+}) => {
+  const inputClasses = `w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
+    error ? 'border-red-500' : 'border-gray-600'
+  } ${
+    disabled ? 'bg-gray-800 cursor-not-allowed' : 'bg-gray-900'
   } ${className}`;
 
   return (
-    <div className={styles.inputWrapper}>
-      {label && <label className={styles.label}>{label}</label>}
-      <input className={inputClasses} {...props} />
-      {error && <p className={styles.errorMessage}>{error}</p>}
+    <div className='w-full'>
+      {label && (
+        <label className='block text-sm font-medium text-gray-300 mb-2'>
+          {label}
+          {required && <span className='text-red-500 ml-1'>*</span>}
+        </label>
+      )}
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
+        required={required}
+        disabled={disabled}
+        className={inputClasses}
+      />
+      {error && <p className='mt-1 text-sm text-red-600'>{error}</p>}
     </div>
   );
 };
