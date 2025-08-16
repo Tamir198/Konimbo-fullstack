@@ -1,137 +1,192 @@
-import Button from '@/components/ui/atoms/Button/Button';
-import Card from '@/components/ui/atoms/Card/Card';
-import Input from '@/components/ui/atoms/Input/Input';
+import Layout from '@/components/ui/components/Layout';
 import Typography from '@/components/ui/atoms/Typography/Typography';
+import Card from '@/components/ui/atoms/Card/Card';
+import Button from '@/components/ui/atoms/Button/Button';
+import Input from '@/components/ui/atoms/Input/Input';
 
 export default function Home() {
   return (
-    <div
-      style={{
-        padding: '2rem',
-        maxWidth: '800px',
-        margin: '0 auto',
-        backgroundColor: 'var(--color-background)',
-        borderRadius: 'var(--radius-lg)',
-        boxShadow: 'var(--shadow-md)',
-        minHeight: 'calc(100vh - 4rem)',
-        marginTop: '2rem',
-        marginBottom: '2rem',
-      }}
-    >
-      <Typography variant='title' size='large' weight='bold'>
-        Konimbo Frontend
-      </Typography>
-
-      <div style={{ marginBottom: '2rem' }}>
+    <Layout>
+      <div
+        style={{
+          backgroundColor: 'var(--color-background)',
+          borderRadius: 'var(--radius-lg)',
+          boxShadow: 'var(--shadow-md)',
+          padding: 'var(--spacing-2xl)',
+        }}
+      >
         <Typography
-          variant='subtitle'
-          size='medium'
-          weight='semibold'
-          style={{ marginBottom: '1rem' }}
+          variant='title'
+          size='large'
+          weight='bold'
+          style={{ marginBottom: 'var(--spacing-xl)' }}
         >
-          Typography Examples
+          🐾 Animals List
         </Typography>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <Typography variant='title' size='large'>
-            Title - Large
-          </Typography>
-          <Typography variant='subtitle' size='medium'>
-            Subtitle - Medium
-          </Typography>
-          <Typography variant='body' size='medium'>
-            Body text with medium size
-          </Typography>
-          <Typography variant='bodySmall' size='small'>
-            Small body text
-          </Typography>
-          <Typography variant='caption' color='secondary'>
-            Caption text in secondary color
-          </Typography>
-        </div>
-
-        <div style={{ marginBottom: '1rem' }}>
-          <Typography variant='body' weight='bold' color='primary'>
-            Bold primary text
-          </Typography>
-          <Typography variant='body' weight='medium' color='secondary'>
-            Medium secondary text
-          </Typography>
-          <Typography variant='body' weight='normal' color='success'>
-            Normal success text
-          </Typography>
-          <Typography variant='body' weight='semibold' color='warning'>
-            Semibold warning text
-          </Typography>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: '2rem' }}>
-        <Typography
-          variant='subtitle'
-          size='medium'
-          weight='semibold'
-          style={{ marginBottom: '1rem' }}
+        {/* Search and Filter Section */}
+        <Card
+          padding='large'
+          shadow='medium'
+          style={{ marginBottom: 'var(--spacing-xl)' }}
         >
-          Button Examples
-        </Typography>
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-          <Button variant='primary'>Primary Button</Button>
-          <Button variant='secondary'>Secondary</Button>
-          <Button variant='outline'>Outline</Button>
-        </div>
-
-        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-          <Button size='small'>Small</Button>
-          <Button size='medium'>Medium</Button>
-          <Button size='large'>Large</Button>
-        </div>
-      </div>
-
-      <div style={{ marginBottom: '2rem' }}>
-        <Typography
-          variant='subtitle'
-          size='medium'
-          weight='semibold'
-          style={{ marginBottom: '1rem' }}
-        >
-          Input Examples
-        </Typography>
-        <Input
-          label='Name'
-          placeholder='Enter your name'
-          style={{ marginBottom: '1rem' }}
-        />
-        <Input label='Email' placeholder='Enter your email' type='email' />
-      </div>
-
-      <div style={{ marginBottom: '2rem' }}>
-        <Typography
-          variant='subtitle'
-          size='medium'
-          weight='semibold'
-          style={{ marginBottom: '1rem' }}
-        >
-          Card Examples
-        </Typography>
-        <Card padding='large' shadow='medium' style={{ marginBottom: '1rem' }}>
-          <Typography variant='subtitle' size='medium' weight='semibold'>
-            Card with Large Padding
+          <Typography
+            variant='subtitle'
+            size='medium'
+            weight='semibold'
+            style={{ marginBottom: 'var(--spacing-lg)' }}
+          >
+            Search & Filter
           </Typography>
-          <Typography variant='bodySmall' size='small' color='secondary'>
-            This card has large padding and medium shadow.
-          </Typography>
+
+          <div
+            style={{
+              display: 'flex',
+              gap: 'var(--spacing-md)',
+              alignItems: 'end',
+            }}
+          >
+            <Input
+              label='Search Animals'
+              placeholder='Search by name, species, or color...'
+              style={{ flex: 1 }}
+            />
+            <Button variant='primary'>Search</Button>
+            <Button variant='outline'>Clear</Button>
+          </div>
         </Card>
 
-        <Card padding='small' shadow='none'>
-          <Typography variant='subtitle' size='small' weight='medium'>
-            Card with Small Padding
-          </Typography>
-          <Typography variant='bodySmall' size='small' color='secondary'>
-            This card has small padding and no shadow.
-          </Typography>
-        </Card>
+        {/* Animals Grid */}
+        <div
+          style={{
+            display: 'grid',
+            gap: 'var(--spacing-lg)',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          }}
+        >
+          {/* Sample Animal Cards */}
+          <Card padding='medium' shadow='medium'>
+            <Typography variant='subtitle' size='medium' weight='semibold'>
+              Leo the Lion
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Species: Lion
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Age: 5 years • Weight: 180kg
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-md)' }}
+            >
+              Color: Golden Brown
+            </Typography>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+              <Button variant='outline' size='small'>
+                View Details
+              </Button>
+              <Button variant='ghost' size='small'>
+                Edit
+              </Button>
+            </div>
+          </Card>
+
+          <Card padding='medium' shadow='medium'>
+            <Typography variant='subtitle' size='medium' weight='semibold'>
+              Ellie the Elephant
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Species: African Elephant
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Age: 12 years • Weight: 3000kg
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-md)' }}
+            >
+              Color: Gray
+            </Typography>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+              <Button variant='outline' size='small'>
+                View Details
+              </Button>
+              <Button variant='ghost' size='small'>
+                Edit
+              </Button>
+            </div>
+          </Card>
+
+          <Card padding='medium' shadow='medium'>
+            <Typography variant='subtitle' size='medium' weight='semibold'>
+              Ziggy the Zebra
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Species: Plains Zebra
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-sm)' }}
+            >
+              Age: 3 years • Weight: 350kg
+            </Typography>
+            <Typography
+              variant='bodySmall'
+              size='small'
+              color='secondary'
+              style={{ marginBottom: 'var(--spacing-md)' }}
+            >
+              Color: Black & White
+            </Typography>
+            <div style={{ display: 'flex', gap: 'var(--spacing-sm)' }}>
+              <Button variant='outline' size='small'>
+                View Details
+              </Button>
+              <Button variant='ghost' size='small'>
+                Edit
+              </Button>
+            </div>
+          </Card>
+        </div>
+
+        {/* Add New Animal Button */}
+        <div style={{ marginTop: 'var(--spacing-xl)', textAlign: 'center' }}>
+          <Button variant='primary' size='large'>
+            + Add New Animal
+          </Button>
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
