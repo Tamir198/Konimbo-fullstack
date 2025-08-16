@@ -47,15 +47,6 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal }) => {
             View Details
           </Button>
         </Link>
-        <Link href='/animals/new'>
-          <Button
-            variant='primary'
-            size='medium'
-            className='w-[var(--spacing-2xl)]'
-          >
-            Edit
-          </Button>
-        </Link>
       </div>
     </Card>
   );

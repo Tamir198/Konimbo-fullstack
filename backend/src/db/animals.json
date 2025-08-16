@@ -39,6 +39,16 @@
       "color": "Golden",
       "createdAt": "2025-08-15T19:13:55.611Z",
       "updatedAt": "2025-08-15T19:13:55.611Z"
+    },
+    {
+      "id": "1755360345076",
+      "name": "sdasd",
+      "species": "test tets",
+      "age": 0,
+      "weight": 123,
+      "color": "d;lkj;lkasjf;lkj;lkdf",
+      "createdAt": "2025-08-16T16:05:45.076Z",
+      "updatedAt": "2025-08-16T16:05:45.076Z"
     }
   ]
 }

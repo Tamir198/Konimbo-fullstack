@@ -3,39 +3,43 @@
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useRouter } from 'next/navigation';
 import Layout from '@/components/ui/sharedComponents/Layout';
 import Typography from '@/components/ui/atoms/Typography/Typography';
 import Card from '@/components/ui/atoms/Card/Card';
 import Button from '@/components/ui/atoms/Button/Button';
 import Input from '@/components/ui/atoms/Input/Input';
 import Link from 'next/link';
+import { animalService } from '@/services/animalService';
+import { FORM_VALIDATION, ERROR_MESSAGES, TEXT } from '@/constants';
 
 const addAnimalSchema = z.object({
   name: z
     .string()
-    .min(1, 'Name is required')
-    .min(2, 'Name must be at least 2 characters'),
+    .min(1, ERROR_MESSAGES.NAME_REQUIRED)
+    .min(FORM_VALIDATION.MIN_NAME_LENGTH, ERROR_MESSAGES.NAME_MIN_LENGTH),
   species: z
     .string()
-    .min(1, 'Species is required')
-    .min(2, 'Species must be at least 2 characters'),
+    .min(1, ERROR_MESSAGES.SPECIES_REQUIRED)
+    .min(FORM_VALIDATION.MIN_SPECIES_LENGTH, ERROR_MESSAGES.SPECIES_MIN_LENGTH),
   age: z
     .number()
-    .min(0, 'Age must be 0 or greater')
-    .max(100, 'Age must be 100 or less'),
+    .min(FORM_VALIDATION.MIN_AGE, ERROR_MESSAGES.AGE_MIN)
+    .max(FORM_VALIDATION.MAX_AGE, ERROR_MESSAGES.AGE_MAX),
   weight: z
     .number()
-    .min(0.1, 'Weight must be greater than 0')
-    .max(1000, 'Weight must be 1000kg or less'),
+    .min(FORM_VALIDATION.MIN_WEIGHT, ERROR_MESSAGES.WEIGHT_MIN)
+    .max(FORM_VALIDATION.MAX_WEIGHT, ERROR_MESSAGES.WEIGHT_MAX),
   color: z
     .string()
-    .min(1, 'Color is required')
-    .min(2, 'Color must be at least 2 characters'),
+    .min(1, ERROR_MESSAGES.COLOR_REQUIRED)
+    .min(FORM_VALIDATION.MIN_COLOR_LENGTH, ERROR_MESSAGES.COLOR_MIN_LENGTH),
 });
 
 type AddAnimalFormData = z.infer<typeof addAnimalSchema>;
 
 export default function AddAnimal() {
+  const router = useRouter();
   const {
     control,
     handleSubmit,
@@ -54,16 +58,19 @@ export default function AddAnimal() {
 
   const onSubmit = async (data: AddAnimalFormData) => {
     try {
-      console.log('Form data:', data);
-      // TODO: Call API to create animal
-      // await animalService.createAnimal(data);
+      console.log('Creating animal:', data);
+
+      // Call API to create animal
+      await animalService.createAnimal(data);
 
       // Reset form after successful submission
       reset();
-      alert('Animal added successfully!');
+
+      // Redirect to main page to see all animals
+      router.push('/');
     } catch (error) {
-      console.error('Error adding animal:', error);
-      alert('Failed to add animal. Please try again.');
+      console.error('Error creating animal:', error);
+      alert(ERROR_MESSAGES.ANIMAL_CREATE_FAILED);
     }
   };
 
@@ -71,7 +78,7 @@ export default function AddAnimal() {
     <Layout>
       <div className='max-w-2xl mx-auto bg-gray-900 rounded-lg shadow-md p-8'>
         <Typography variant='title' size='large' weight='bold' className='mb-8'>
-          🐾 Add New Animal
+          {TEXT.ADD_NEW_ANIMAL}
         </Typography>
 
         <Card padding='large' shadow='medium'>
@@ -81,8 +88,8 @@ export default function AddAnimal() {
               control={control}
               render={({ field }) => (
                 <Input
-                  label='Animal Name'
-                  placeholder='Enter animal name'
+                  label={TEXT.ANIMAL_NAME}
+                  placeholder={TEXT.ANIMAL_NAME_PLACEHOLDER}
                   value={field.value}
                   onChange={field.onChange}
                   error={errors.name?.message}
@@ -95,8 +102,8 @@ export default function AddAnimal() {
               control={control}
               render={({ field }) => (
                 <Input
-                  label='Species'
-                  placeholder='Enter species (e.g., Lion, Elephant)'
+                  label={TEXT.SPECIES}
+                  placeholder={TEXT.SPECIES_PLACEHOLDER}
                   value={field.value}
                   onChange={field.onChange}
                   error={errors.species?.message}
@@ -110,7 +117,7 @@ export default function AddAnimal() {
                 control={control}
                 render={({ field }) => (
                   <Input
-                    label='Age (years)'
+                    label={TEXT.AGE_YEARS}
                     type='number'
                     placeholder='0'
                     value={field.value}
@@ -125,7 +132,7 @@ export default function AddAnimal() {
                 control={control}
                 render={({ field }) => (
                   <Input
-                    label='Weight (kg)'
+                    label={TEXT.WEIGHT_KG}
                     type='number'
                     placeholder='0'
                     step='0.1'
@@ -142,8 +149,8 @@ export default function AddAnimal() {
               control={control}
               render={({ field }) => (
                 <Input
-                  label='Color'
-                  placeholder='Enter color description'
+                  label={TEXT.COLOR}
+                  placeholder={TEXT.COLOR_PLACEHOLDER}
                   value={field.value}
                   onChange={field.onChange}
                   error={errors.color?.message}
@@ -153,12 +160,17 @@ export default function AddAnimal() {
 
             <div className='flex gap-4 mt-8 justify-end'>
               <Link href='/'>
-                <Button variant='outline' type='button'>
-                  Cancel
+                <Button variant='outline' size='medium'>
+                  {TEXT.CANCEL}
                 </Button>
               </Link>
-              <Button variant='primary' type='submit' disabled={isSubmitting}>
-                {isSubmitting ? 'Adding...' : 'Add Animal'}
+              <Button
+                variant='primary'
+                size='medium'
+                type='submit'
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? TEXT.CREATING : TEXT.CREATE_ANIMAL}
               </Button>
             </div>
           </form>
