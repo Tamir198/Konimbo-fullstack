@@ -25,11 +25,14 @@ const Button: React.FC<ButtonProps> = ({
     'inline-flex items-center justify-center border-none rounded-md font-medium transition-all cursor-pointer font-inherit text-decoration-none focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:pointer-events-none';
 
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-600 text-gray-900 hover:bg-gray-700',
+    primary:
+      'bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)]',
+    secondary:
+      'bg-[var(--color-secondary)] text-[var(--color-text-primary)] hover:bg-[var(--color-secondary-hover)]',
     outline:
-      'bg-transparent text-gray-900 border border-gray-300 hover:bg-gray-100',
-    ghost: 'bg-transparent text-gray-900 hover:bg-gray-200',
+      'bg-transparent text-[var(--color-text-secondary)] border border-[var(--color-border)] hover:bg-[var(--color-background-secondary)] hover:text-[var(--color-text-primary)]',
+    ghost:
+      'bg-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-background-secondary)] hover:text-[var(--color-text-primary)]',
   };
 
   const sizeClasses = {
