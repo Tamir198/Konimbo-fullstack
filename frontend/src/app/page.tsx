@@ -1,6 +1,6 @@
-import Layout from '@/components/ui/components/Layout';
+import Layout from '@/components/ui/sharedComponents/Layout';
 import Typography from '@/components/ui/atoms/Typography/Typography';
-import AnimalsGrid from '@/components/ui/components/AnimalsGrid';
+import AnimalsGrid from '@/components/ui/sharedComponents/AnimalsGrid';
 import { getAnimals } from './actions/animals';
 
 export default async function Home() {

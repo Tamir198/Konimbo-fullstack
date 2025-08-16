@@ -1,4 +1,4 @@
-import Layout from '@/components/ui/components/Layout';
+import Layout from '@/components/ui/sharedComponents/Layout';
 import Typography from '@/components/ui/atoms/Typography/Typography';
 import Card from '@/components/ui/atoms/Card/Card';
 import Button from '@/components/ui/atoms/Button/Button';
