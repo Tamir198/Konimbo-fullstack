@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import Card from '@/components/ui/atoms/Card/Card';
 import Typography from '@/components/ui/atoms/Typography/Typography';
 import Button from '@/components/ui/atoms/Button/Button';
@@ -41,16 +42,20 @@ const AnimalCard: React.FC<AnimalCardProps> = ({ animal }) => {
         Color: {animal.color}
       </Typography>
       <div className='flex gap-2'>
-        <Button variant='primary' size='medium'>
-          View Details
-        </Button>
-        <Button
-          variant='primary'
-          size='medium'
-          className='w-[var(--spacing-2xl)]'
-        >
-          Edit
-        </Button>
+        <Link href={`/animals/${animal.id}`}>
+          <Button variant='primary' size='medium'>
+            View Details
+          </Button>
+        </Link>
+        <Link href='/animals/new'>
+          <Button
+            variant='primary'
+            size='medium'
+            className='w-[var(--spacing-2xl)]'
+          >
+            Edit
+          </Button>
+        </Link>
       </div>
     </Card>
   );

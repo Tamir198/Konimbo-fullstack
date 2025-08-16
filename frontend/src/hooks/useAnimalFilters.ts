@@ -11,40 +11,40 @@ export const useAnimalFilters = (animals: Animal[]) => {
   const [sortBy, setSortBy] = useState<'name' | 'age' | 'weight'>('name');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
+  const { species, color, ageRange } = filters;
+
   const filteredAnimals = useMemo(() => {
-    return animals.filter(({ name, species, color, age }) => {
-      if (
-        !searchQuery.trim() &&
-        !filters.species &&
-        !filters.color &&
-        !filters.ageRange
-      )
-        return true;
-
-      const query = searchQuery.toLowerCase();
-      const matchesSearch =
-        !searchQuery.trim() ||
-        name.toLowerCase().includes(query) ||
-        species.toLowerCase().includes(query) ||
-        color.toLowerCase().includes(query) ||
-        age.toString().includes(query);
-
-      const matchesSpecies = !filters.species || species === filters.species;
-      const matchesColor = !filters.color || color === filters.color;
-
-      let matchesAge = true;
-      if (filters.ageRange) {
-        const [min, max] = filters.ageRange.split('-').map(Number);
-        if (max) {
-          matchesAge = age >= min && age <= max;
-        } else {
-          matchesAge = age >= min;
+    return animals.filter(
+      ({ name, species: animalSpecies, color: animalColor, age }) => {
+        if (!searchQuery.trim() && !species && !color && !ageRange) {
+          return true;
         }
-      }
 
-      return matchesSearch && matchesSpecies && matchesColor && matchesAge;
-    });
-  }, [animals, searchQuery, filters]);
+        const query = searchQuery.toLowerCase();
+        const matchesSearch =
+          !searchQuery.trim() ||
+          name.toLowerCase().includes(query) ||
+          animalSpecies.toLowerCase().includes(query) ||
+          animalColor.toLowerCase().includes(query) ||
+          age.toString().includes(query);
+
+        const matchesSpecies = !species || animalSpecies === species;
+        const matchesColor = !color || animalColor === color;
+
+        let matchesAge = true;
+        if (ageRange) {
+          const [min, max] = ageRange.split('-').map(Number);
+          if (max) {
+            matchesAge = age >= min && age <= max;
+          } else {
+            matchesAge = age >= min;
+          }
+        }
+
+        return matchesSearch && matchesSpecies && matchesColor && matchesAge;
+      }
+    );
+  }, [animals, searchQuery, species, color, ageRange]);
 
   const sortedAnimals = useMemo(() => {
     return [...filteredAnimals].sort((a, b) => {
