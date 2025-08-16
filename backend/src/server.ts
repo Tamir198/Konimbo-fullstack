@@ -10,7 +10,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Configure CORS to accept requests from anywhere
 app.use(
   cors({
     origin: '*',
